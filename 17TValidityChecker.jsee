@@ -1,0 +1,76 @@
+///////////// 
+
+//for (x=0; x < 48; x++) 
+//{
+
+editor.ExecuteCommandByID(4472); //normal mode
+nTotal = document.GetLines(); //lines in original file
+
+var sourceArray = []; //init arrays
+var combinedTotal = 0;
+var mechTotal = 0;
+var perfTotal = 0;
+var lineTotal = 0;
+
+var name = ""
+var errorLines = "Error Lines:\n" + "\n"
+	
+	
+for (x=0; x < nTotal; x++) {
+	
+	var ccidLine = document.GetLine(x+1)		
+	sourceArray[x] = []; //init an inner array for each line of OG File
+	sourceArray[x] = ccidLine.split("\t"); //set each inner array value as OG cells
+	}
+	
+	
+	
+
+
+///This checks for lines that have an extra delimiter
+for (x=0; x < nTotal; x++) {
+	
+	if ((sourceArray[x][0] != "DWD") &&
+		(sourceArray[x][0] != "DDB") &&
+		(sourceArray[x][0] != "HDR") &&
+		(sourceArray[x][0] != "TLR"))
+	  {
+	
+	errorLines += (x+1) + "\n";
+	
+	}	
+	
+}
+
+for (x=0; x < nTotal; x++) {
+	
+	if ((sourceArray[x][15] != null)) 
+	  {
+	
+	errorLines += (x+1) + "\n";
+	
+	}	
+	
+}
+	
+for (x=0; x < nTotal; x++) {
+	
+	if ((sourceArray[x][14] != null)) 
+	  {
+	
+	errorLines += (x+1) + "\n";
+	
+	}	
+	
+}
+
+
+
+editor.NewFile(); // 
+
+document.write(errorLines + "\n");
+/*
+document.write((sourceArray[0][0]) + "\n");
+document.write((sourceArray[0][1]) + "\n");
+document.write((sourceArray[0][2]) + "\n");
+*/
