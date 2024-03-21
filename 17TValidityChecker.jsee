@@ -30,17 +30,17 @@ for (x=0; x < nTotal; x++) {
 ///This checks for lines that have an extra delimiter
 for (x=0; x < nTotal; x++) {
 	
-	if ((sourceArray[x][0] != "DWD") &&
+	if ((sourceArray[x][0] != "DWD") && //if not a header type line
 		(sourceArray[x][0] != "DDB") &&
 		(sourceArray[x][0] != "HDR") &&
 		(sourceArray[x][0] != "TLR"))
-	  {
+	  	{
 	
-	errorLines += (x+1) + "\n";
+	errorLines += (x+1) + "\n"; //increment the error counter
 	
-	}	
+		}	
 	
-}
+	}
 
 for (x=0; x < nTotal; x++) {
 	
@@ -65,12 +65,28 @@ for (x=0; x < nTotal; x++) {
 }
 
 
+for (x=0; x < nTotal; x++) {
+	for (y=0; y < 10; y++) {
+	
+		if (sourceArray[x][y] != null){
+	
+			if (sourceArray[x][y].length > 200   ) { //check for overlong lines
+	
+		//if ((/(\t[^\t]{2,600}\t)+?/).test(sourceArray[x][y])) {
+		
+		//if  (/(\t[^\t]{200,600}\t)+?/).test(sourceArray[x][y])) {
+			
+	
+				errorLines += (x+1) + "\n";
+	
+				}	
+	
+		}
+	}
+}
+
 
 editor.NewFile(); // 
 
 document.write(errorLines + "\n");
-/*
-document.write((sourceArray[0][0]) + "\n");
-document.write((sourceArray[0][1]) + "\n");
-document.write((sourceArray[0][2]) + "\n");
-*/
+
